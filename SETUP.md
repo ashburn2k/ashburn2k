@@ -19,23 +19,7 @@ This folder is meant to become the special GitHub profile repository for the acc
    ashburn2k/ashburn2k
    ```
 
-2. Create a GitHub personal access token for Metrics.
-
-   Recommended secret name:
-
-   ```text
-   METRICS_TOKEN
-   ```
-
-   For public profile metrics, start with the least access that works for your selected plugins. The base metrics in this scaffold need repository read access and the workflow needs permission to write the generated SVG back to the profile repository.
-
-3. Add the token as a repository secret:
-
-   ```text
-   Settings -> Secrets and variables -> Actions -> New repository secret
-   ```
-
-4. Push this folder to your profile repository:
+2. Push this folder to your profile repository:
 
    ```zsh
    git init
@@ -46,13 +30,17 @@ This folder is meant to become the special GitHub profile repository for the acc
    git push -u origin main
    ```
 
-5. In GitHub, open:
+3. In GitHub, open:
 
    ```text
    Actions -> Metrics -> Run workflow
    ```
 
-   The first successful run should commit `github-metrics.svg` into the repository.
+The first successful run should commit `github-metrics.svg` into the repository.
+
+## Token note
+
+The starter workflow uses GitHub's built-in `${{ github.token }}` to avoid storing a broad account token in a third-party action. If you add Metrics plugins that need broader account, organization, gist, or private-repository access, create a least-privilege personal access token and store it as `METRICS_TOKEN`, then change the workflow token input to `${{ secrets.METRICS_TOKEN }}`.
 
 ## If your GitHub login is not `ashburn2k`
 
